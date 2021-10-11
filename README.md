@@ -13,3 +13,9 @@ Decide aleatóriamente quais entregas fazer primeiro
 
 *Protótipo*:
 ![image](https://i.imgur.com/FTHiqlq.gif)
+
+# Editar
+ - Baixe o projeto e a abra o arquivo `CorreioProj.csproj` no [Visual Studio](https://visualstudio.microsoft.com/pt-br/thank-you-downloading-visual-studio/?sku=Community&rel=16)
+
+# Executar 
+- Baixe o projeto e abra o executável que está em [CorreioProj/CorreioProj/bin/Debug/netcoreapp3.1/](CorreioProj/bin/Debug/netcoreapp3.1)
