@@ -25,13 +25,13 @@ namespace CorreioProj
             {
                 // Tempo de viagem deverá ser decidido futuramente com base na realidade
                 // da distância entre o CEP do armazém e o CEP do destino da caixa
-                createNewBox(armazemCaixas[i].CEP, "2 horas", "1", i.ToString());
+                createNewBox(armazemCaixas[i].CEP, "2 horas", "1", i.ToString(), armazemCaixas[i].tamanhoCaixa);
 
             }
         }
 
         // Função para criar um novo item na lista
-        private void createNewBox(string cepDestino, string tempoViagemDestino, string nivelPrioridade, string caixaNumero)
+        private void createNewBox(string cepDestino, string tempoViagemDestino, string nivelPrioridade, string caixaNumero, string Tamanhodacaixa)
         {
 
             if (addedBoxes.Contains(caixaNumero))
@@ -44,9 +44,11 @@ namespace CorreioProj
             Label label1 = new Label();
             Label label2 = new Label();
             Label label3 = new Label();
+            Label label4 = new Label();
             Label caixaPrioridadeLevel = new Label();
             Label caixaTempoAteDestino = new Label();
             Label caixaCepDestino = new Label();
+            Label caixaTamanhodacaixa = new Label();
 
             label1.AutoSize = true;
             label1.Location = new System.Drawing.Point(6, 23);
@@ -69,36 +71,52 @@ namespace CorreioProj
             label3.TabIndex = 2;
             label3.Text = "Nível Prioridade:";
 
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(6, 90);
+            label4.Name = "label3";
+            label4.Size = new System.Drawing.Size(119, 20);
+            label4.TabIndex = 3;
+            label4.Text = "Tamanho da caixa:";
+
             caixaPrioridadeLevel.AutoSize = true;
             caixaPrioridadeLevel.Location = new System.Drawing.Point(124, 67);
             caixaPrioridadeLevel.Name = "caixaPrioridadeLevel";
             caixaPrioridadeLevel.Size = new System.Drawing.Size(50, 20);
-            caixaPrioridadeLevel.TabIndex = 5;
+            caixaPrioridadeLevel.TabIndex = 4;
             caixaPrioridadeLevel.Text = nivelPrioridade;
  
             caixaTempoAteDestino.AutoSize = true;
             caixaTempoAteDestino.Location = new System.Drawing.Point(232, 43);
             caixaTempoAteDestino.Name = "caixaTempoAteDestino";
             caixaTempoAteDestino.Size = new System.Drawing.Size(50, 20);
-            caixaTempoAteDestino.TabIndex = 4;
+            caixaTempoAteDestino.TabIndex = 5;
             caixaTempoAteDestino.Text = tempoViagemDestino;
 
             caixaCepDestino.AutoSize = true;
             caixaCepDestino.Location = new System.Drawing.Point(124, 23);
             caixaCepDestino.Name = "caixaCepDestino";
             caixaCepDestino.Size = new System.Drawing.Size(50, 20);
-            caixaCepDestino.TabIndex = 3;
+            caixaCepDestino.TabIndex = 6;
             caixaCepDestino.Text = cepDestino;
+
+            caixaTamanhodacaixa.AutoSize = true;
+            caixaTamanhodacaixa.Location = new System.Drawing.Point(124, 90);
+            caixaTamanhodacaixa.Name = "caixaTamanhodacaixa";
+            caixaTamanhodacaixa.Size = new System.Drawing.Size(50, 20);
+            caixaTamanhodacaixa.TabIndex = 7;
+            caixaTamanhodacaixa.Text = Tamanhodacaixa;
 
             groupbox.Controls.Add(caixaPrioridadeLevel);
             groupbox.Controls.Add(caixaTempoAteDestino);
             groupbox.Controls.Add(caixaCepDestino);
+            groupbox.Controls.Add(caixaTamanhodacaixa);
             groupbox.Controls.Add(label3);
             groupbox.Controls.Add(label2);
             groupbox.Controls.Add(label1);
+            groupbox.Controls.Add(label4);
             groupbox.Location = new System.Drawing.Point(3, 3);
             groupbox.Name = "groupBox1";
-            groupbox.Size = new System.Drawing.Size(384, 96);
+            groupbox.Size = new System.Drawing.Size(384, 116);
             groupbox.TabIndex = 0;
             groupbox.TabStop = false;
             groupbox.Text = caixaNumero;
@@ -111,14 +129,20 @@ namespace CorreioProj
         private void buttonAddCaixaArmazem_Click(object sender, EventArgs e)
         {
             Caixa caixa = new Caixa();
+            if (caixaTextBoxCepDestino.Text != "" && caixaTamanhoComboBox.Text != "" && textBox1.Text != "")
+            {
+                caixa.CEP = caixaTextBoxCepDestino.Text;
+                caixa.tamanhoCaixa = caixaTamanhoComboBox.SelectedItem.ToString();
+                caixa.ID = armazemCaixas.Count;
 
-            caixa.CEP = caixaTextBoxCepDestino.Text;
-            caixa.tamanhoCaixa = caixaTamanhoComboBox.SelectedItem.ToString();
-            caixa.ID = armazemCaixas.Count;
-            
-            armazemCaixas.Add(caixa);
+                armazemCaixas.Add(caixa);
 
-            Console.WriteLine("ID da caixa = " + caixa.ID);
+                Console.WriteLine("ID da caixa = " + caixa.ID);
+            }
+            else
+            {
+                MessageBox.Show("preencher todos os campos");
+            }
 
         }
 
