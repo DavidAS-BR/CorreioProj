@@ -1,0 +1,5 @@
+C:\Users\david\OneDrive\Desktop\CorreioProj\CorreioProj\bin\Release\netcoreapp3.1\publish\CorreioProj.exe
+C:\Users\david\OneDrive\Desktop\CorreioProj\CorreioProj\bin\Release\netcoreapp3.1\publish\CorreioProj.dll
+C:\Users\david\OneDrive\Desktop\CorreioProj\CorreioProj\bin\Release\netcoreapp3.1\publish\CorreioProj.deps.json
+C:\Users\david\OneDrive\Desktop\CorreioProj\CorreioProj\bin\Release\netcoreapp3.1\publish\CorreioProj.runtimeconfig.json
+C:\Users\david\OneDrive\Desktop\CorreioProj\CorreioProj\bin\Release\netcoreapp3.1\publish\CorreioProj.pdb

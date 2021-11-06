@@ -1,0 +1,16 @@
+C:\Users\david\OneDrive\Desktop\CorreioProj\CorreioProj\bin\Release\netcoreapp3.1\CorreioProj.exe
+C:\Users\david\OneDrive\Desktop\CorreioProj\CorreioProj\bin\Release\netcoreapp3.1\CorreioProj.deps.json
+C:\Users\david\OneDrive\Desktop\CorreioProj\CorreioProj\bin\Release\netcoreapp3.1\CorreioProj.runtimeconfig.json
+C:\Users\david\OneDrive\Desktop\CorreioProj\CorreioProj\bin\Release\netcoreapp3.1\CorreioProj.runtimeconfig.dev.json
+C:\Users\david\OneDrive\Desktop\CorreioProj\CorreioProj\bin\Release\netcoreapp3.1\CorreioProj.dll
+C:\Users\david\OneDrive\Desktop\CorreioProj\CorreioProj\bin\Release\netcoreapp3.1\CorreioProj.pdb
+C:\Users\david\OneDrive\Desktop\CorreioProj\CorreioProj\obj\Release\netcoreapp3.1\CorreioProj.csproj.AssemblyReference.cache
+C:\Users\david\OneDrive\Desktop\CorreioProj\CorreioProj\obj\Release\netcoreapp3.1\CorreioProj.CorreioLogistica.resources
+C:\Users\david\OneDrive\Desktop\CorreioProj\CorreioProj\obj\Release\netcoreapp3.1\CorreioProj.csproj.GenerateResource.cache
+C:\Users\david\OneDrive\Desktop\CorreioProj\CorreioProj\obj\Release\netcoreapp3.1\CorreioProj.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\david\OneDrive\Desktop\CorreioProj\CorreioProj\obj\Release\netcoreapp3.1\CorreioProj.AssemblyInfoInputs.cache
+C:\Users\david\OneDrive\Desktop\CorreioProj\CorreioProj\obj\Release\netcoreapp3.1\CorreioProj.AssemblyInfo.cs
+C:\Users\david\OneDrive\Desktop\CorreioProj\CorreioProj\obj\Release\netcoreapp3.1\CorreioProj.csproj.CoreCompileInputs.cache
+C:\Users\david\OneDrive\Desktop\CorreioProj\CorreioProj\obj\Release\netcoreapp3.1\CorreioProj.dll
+C:\Users\david\OneDrive\Desktop\CorreioProj\CorreioProj\obj\Release\netcoreapp3.1\CorreioProj.pdb
+C:\Users\david\OneDrive\Desktop\CorreioProj\CorreioProj\obj\Release\netcoreapp3.1\CorreioProj.genruntimeconfig.cache
