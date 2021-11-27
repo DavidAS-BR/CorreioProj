@@ -1,0 +1,6 @@
+##!/bin/bash
+
+# Arquivo feito para o hosteamento da nossa API no site https://glitch.com/ gratuitamente.
+
+# Iniciando nossa API.
+python3 ModSimTripTimeAPI/api_get_trip_info.py
