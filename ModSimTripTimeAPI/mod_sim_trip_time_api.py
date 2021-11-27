@@ -108,6 +108,3 @@ def mod_sim_trip_time_api(cep_de, cep_para) -> dict:
     }
 
     return trip_info
-
-
-# print(mod_sim_trip_time_api('02221000', '01508000'))
