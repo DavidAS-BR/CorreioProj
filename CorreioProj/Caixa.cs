@@ -9,6 +9,8 @@ namespace CorreioProj
         private int _id;
         private string _cep;
         private string _tamanhoCaixa;
+        private string _horastrasporte; 
+        private string _prioridade;
 
         public string CEP
         {
@@ -46,6 +48,32 @@ namespace CorreioProj
             set
             {
                 _id = value;
+            }
+        }
+
+        public string prioridade
+        {
+            get
+            {
+                return _prioridade;
+            }
+
+            set
+            {
+                _prioridade = value;
+            }
+        }
+
+        public string horastrasporte
+        {
+            get
+            {
+                return _horastrasporte;
+            }
+
+            set
+            {
+                _horastrasporte = value;
             }
         }
     }

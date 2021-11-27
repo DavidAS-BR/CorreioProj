@@ -25,7 +25,7 @@ namespace CorreioProj
             {
                 // Tempo de viagem deverá ser decidido futuramente com base na realidade
                 // da distância entre o CEP do armazém e o CEP do destino da caixa
-                createNewBox(armazemCaixas[i].CEP, "2 horas", "1", i.ToString(), armazemCaixas[i].tamanhoCaixa);
+                createNewBox(armazemCaixas[i].CEP, armazemCaixas[i].horastrasporte,armazemCaixas[i].prioridade, i.ToString(), armazemCaixas[i].tamanhoCaixa);
 
             }
         }
@@ -116,7 +116,7 @@ namespace CorreioProj
             groupbox.Controls.Add(label4);
             groupbox.Location = new System.Drawing.Point(3, 3);
             groupbox.Name = "groupBox1";
-            groupbox.Size = new System.Drawing.Size(384, 116);
+            groupbox.Size = new System.Drawing.Size(324, 116);
             groupbox.TabIndex = 0;
             groupbox.TabStop = false;
             groupbox.Text = caixaNumero;
@@ -134,6 +134,8 @@ namespace CorreioProj
                 caixa.CEP = caixaTextBoxCepDestino.Text;
                 caixa.tamanhoCaixa = caixaTamanhoComboBox.SelectedItem.ToString();
                 caixa.ID = armazemCaixas.Count;
+                caixa.prioridade = "1";
+                caixa.horastrasporte = "2 horas";
 
                 armazemCaixas.Add(caixa);
 
@@ -189,6 +191,19 @@ namespace CorreioProj
                         }
                     }
                 }
+            }
+        }
+
+        private void buttonDefinirArmazemDados_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Enabled == true) {
+                textBox1.Enabled = false;
+                buttonDefinirArmazemDados.Text = "Redefinir";
+            }
+            else
+            {
+                textBox1.Enabled = true;
+                buttonDefinirArmazemDados.Text = "Definir";
             }
         }
     }
