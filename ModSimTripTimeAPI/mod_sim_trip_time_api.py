@@ -27,9 +27,13 @@ def localizar_cep(cep) -> dict:
                              headers=headers,
                              data=payload)
 
+    # Verificando se o CEP foi encontrado
+    if json.loads(response.text)['mensagem'] == "DADOS NAO ENCONTRADOS":
+        return {'street': 'error', 'city': 'error', 'county': 'error'}
+
     # Pegando os dados da response
     endereco = {
-        'street': re.sub(r'-(?!.*-).*', '', json.loads(response.text)['dados'][0]['logradouroDNEC']).strip(),  # Removendo tudo depois do último hífen (número de x até y e outras informações não necessárias) para não atraplhar nossa consulta
+        'street': re.sub(r'-.*', '', json.loads(response.text)['dados'][0]['logradouroDNEC']).strip(),  # Removendo tudo depois do último hífen (número de x até y e outras informações não necessárias) para não atraplhar nossa consulta
         'city': json.loads(response.text)['dados'][0]['localidade'],
         'county': re.sub(r'\([^)]*\)', '', json.loads(response.text)['dados'][0]['bairro']).strip() # Removendo conteúdo entre parenteses que indicam a ZONA do bairro
     }
