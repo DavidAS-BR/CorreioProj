@@ -86,7 +86,7 @@ namespace CorreioProj
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.BackColor = System.Drawing.Color.White;
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.caixaPrioridadeLevel);
@@ -199,7 +199,7 @@ namespace CorreioProj
             // 
             // tabPage1
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.SteelBlue;
+            this.tabPage1.BackColor = System.Drawing.Color.SkyBlue;
             this.tabPage1.Controls.Add(this.label10);
             this.tabPage1.Controls.Add(this.entregarButton);
             this.tabPage1.Controls.Add(this.updateCaixasButton);
@@ -211,12 +211,13 @@ namespace CorreioProj
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage1.Size = new System.Drawing.Size(347, 450);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "Fila de entrega";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label10.ForeColor = System.Drawing.Color.Black;
             this.label10.Location = new System.Drawing.Point(134, 4);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(108, 25);
@@ -284,7 +285,7 @@ namespace CorreioProj
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage2.Size = new System.Drawing.Size(347, 450);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "Registro";
             // 
             // label4
             // 
@@ -446,7 +447,10 @@ namespace CorreioProj
             this.ClientSize = new System.Drawing.Size(355, 479);
             this.Controls.Add(this.tabControl1);
             this.ForeColor = System.Drawing.Color.White;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximizeBox = false;
             this.Name = "CorreioLogistica";
             this.Text = "CorreioLogistica";
             this.flowLayoutPanel1.ResumeLayout(false);

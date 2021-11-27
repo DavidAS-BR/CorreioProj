@@ -116,10 +116,11 @@ namespace CorreioProj
             groupbox.Controls.Add(label4);
             groupbox.Location = new System.Drawing.Point(3, 3);
             groupbox.Name = "groupBox1";
-            groupbox.Size = new System.Drawing.Size(324, 116);
+            groupbox.Size = new System.Drawing.Size(314, 116);
             groupbox.TabIndex = 0;
             groupbox.TabStop = false;
             groupbox.Text = caixaNumero;
+            groupbox.BackColor =Color.White;
 
             flowLayoutPanel1.Controls.Add(groupbox);
 
