@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace CorreioProj
@@ -17,7 +19,8 @@ namespace CorreioProj
 
         private List<Caixa> armazemCaixas = new List<Caixa>(); // Lista com as caixas
         private List<string> addedBoxes = new List<string>(); // Lista onde será salvo a index das caixas adicionadas
-
+        //private Moto motoEntrega = new Moto(caixaTamanhoComboBox.SelectedItem)
+        
         private void updateCaixasButton_Click(object sender, EventArgs e)
         {
 
@@ -133,14 +136,34 @@ namespace CorreioProj
             if (caixaTextBoxCepDestino.Text != "" && caixaTamanhoComboBox.Text != "" && textBox1.Text != "")
             {
                 caixa.CEP = caixaTextBoxCepDestino.Text;
-                caixa.tamanhoCaixa = caixaTamanhoComboBox.SelectedItem.ToString();
-                caixa.ID = armazemCaixas.Count;
-                caixa.prioridade = "1";
-                caixa.horastrasporte = "2 horas";
+                
+                // Plotando a tela que irá mostrar que está "carregando"
+                new Thread(() => new TelaCarregando().ShowDialog()).Start();
 
-                armazemCaixas.Add(caixa);
+                // Pedindo para a função pegar as informações de um cep até o outro pela API
+                dynamic getTripInfo = GetModSimTimeTripAPI.getTripInfoRoute(textBox1.Text, caixaTextBoxCepDestino.Text);
 
-                Console.WriteLine("ID da caixa = " + caixa.ID);
+                // Fechar a tela que mostra o status da task (carregando)
+                TelaCarregando f = new TelaCarregando();
+                f = (TelaCarregando)Application.OpenForms["TelaCarregando"];
+                f.Invoke(new ThreadStart(delegate { f.Close(); }));
+
+                if (getTripInfo["error"] == null)
+                {
+                    caixa.tamanhoCaixa = caixaTamanhoComboBox.SelectedItem.ToString();
+                    caixa.ID = armazemCaixas.Count;
+                    caixa.prioridade = "1";
+                    caixa.horastrasporte = getTripInfo["tempo_de_viagem"];
+                    caixa.tempoTransporteSeconds = getTripInfo["tempo_de_viagem_seconds"];
+
+                    armazemCaixas.Add(caixa);
+                    MessageBox.Show("Caixa adicionada com sucesso!\n" + getTripInfo["destino"]);
+                } else
+                {
+                    MessageBox.Show("Este CEP é inválido! Verifique novamente.");
+                }
+                
+                Console.WriteLine("ID da caixa = " + caixa.ID + " : " + getTripInfo);
             }
             else
             {
@@ -151,61 +174,96 @@ namespace CorreioProj
 
         private void entregarButton_Click(object sender, EventArgs e)
         {
-
-            // Criando uma lista para adicionar os controladores do flowPanel
-            List<Control> listControl = new List<Control>();
-            
-            // Adicionando os controladores do flowpanel na lista criada
-            foreach(Control control in flowLayoutPanel1.Controls)
+            try
             {
-                listControl.Add(control);
-            }
+                // Criando uma lista para adicionar os controladores do flowPanel
+                List<Control> listControl = new List<Control>();
 
-            // Iterando entre os controladores do flowpanel que foram adicionados na lista
-            // Depois filtrando groupboxes que tenham um conteúdo específico para remover do flowpanel
-            foreach (Control control in listControl)
-            {
-                // Procurando o controlador na groupBox que tenha como nome "caixaCepDestino"
-                Control[] myControl = (control as GroupBox).Controls.Find("caixaCepDestino", true);
-
-                // Iterando entre os itens encontrados pelo find
-                foreach (Control groupBoxControls in myControl) 
+                // Adicionando os controladores do flowpanel na lista criada
+                foreach (Control control in flowLayoutPanel1.Controls)
                 {
-                    // Verificando se o item encontrado pelo find é uma Label
-                    if (groupBoxControls is Label)
+                    listControl.Add(control);
+                }
+
+                // Iterando entre os controladores do flowpanel que foram adicionados na lista
+                // Depois filtrando groupboxes que tenham um conteúdo específico para remover do flowpanel
+                foreach (Control control in listControl)
+                {
+                    // Procurando o controlador na groupBox que tenha como nome "caixaCepDestino"
+                    Control[] myControl = (control as GroupBox).Controls.Find("caixaCepDestino", true);
+
+                    // Iterando entre os itens encontrados pelo find
+                    foreach (Control groupBoxControls in myControl)
                     {
-                        Console.WriteLine("groupBoxControls is Label!");
-
-                        // TODO: REMOVER AS CAIXAS SELECIONADAS
-
-                        Caixa proximaEntrega = LogisticaEntrega.decidirProximaEntrega(armazemCaixas);
-
-                        Console.WriteLine("Próxima entrega: " + proximaEntrega.CEP);
-
-                        if ((groupBoxControls as Label).Text == proximaEntrega.CEP)
+                        // Verificando se o item encontrado pelo find é uma Label
+                        if (groupBoxControls is Label)
                         {
-                            flowLayoutPanel1.Controls.Remove(control);
-                            armazemCaixas.Remove(proximaEntrega);
-                            addedBoxes.Remove(proximaEntrega.ID.ToString());
-                            MessageBox.Show("O sistema decidiu entregar a caixa de ID " + proximaEntrega.ID.ToString() + " com o cep " + proximaEntrega.CEP + "!");
-                            return;
+                            Console.WriteLine("groupBoxControls is Label!");
+
+                            // TODO: REMOVER AS CAIXAS SELECIONADAS
+
+                            //Caixa proximaEntrega = LogisticaEntrega.decidirProximaEntregaFIFO(armazemCaixas);
+                            Caixa proximaEntrega = LogisticaEntrega.decidirProximaEntregaANALISECEP(armazemCaixas);
+
+                            Console.WriteLine("Próxima entrega: " + proximaEntrega.CEP);
+
+                            if ((groupBoxControls as Label).Text == proximaEntrega.CEP)
+                            {
+                                flowLayoutPanel1.Controls.Remove(control);
+                                armazemCaixas.Remove(proximaEntrega);
+                                addedBoxes.Remove(proximaEntrega.ID.ToString());
+                                IList<string> tempoTrajeto = proximaEntrega.horastrasporte.Split(':').ToList<string>();
+
+                                MessageBox.Show("Caixa entregue com sucesso!\n\nID DA CAIXA: " + proximaEntrega.ID.ToString() + "\nCEP DA CAIXA: " + proximaEntrega.CEP + "\n\nO trajeto do armazém até o destino da caixa demorou aproximadamente " + tempoTrajeto[0] + " horas, " + tempoTrajeto[1] + " minutos e " + tempoTrajeto[2] + " segundos!");
+                                return;
+                            }
                         }
                     }
                 }
+            } catch (Exception)
+            {
+                MessageBox.Show("Algum erro ocorreu!");
             }
         }
 
         private void buttonDefinirArmazemDados_Click(object sender, EventArgs e)
         {
             if (textBox1.Enabled == true) {
-                textBox1.Enabled = false;
-                buttonDefinirArmazemDados.Text = "Redefinir";
+                // Plotando a tela que irá mostrar que está "carregando"
+                new Thread(() => new TelaCarregando().ShowDialog()).Start();
+
+                // Pedindo para a função pegar as informações de um cep até o outro pela API
+                // Passando para a API um CEP que existe informações (01025010) para que seja possível validar o CEP informado do 
+                // Armazém.
+                // TODO: Fazer uma função na API para verificar se existem informações do CEP que foi passado em vez de fazer dessa maneira.
+                dynamic getTripInfo = GetModSimTimeTripAPI.getTripInfoRoute(textBox1.Text, "01025010");
+
+                // Fechar a tela que mostra o status da task (carregando)
+                TelaCarregando f = new TelaCarregando();
+                f = (TelaCarregando)Application.OpenForms["TelaCarregando"];
+                f.Invoke(new ThreadStart(delegate { f.Close(); }));
+
+                if (getTripInfo["error"] == null)
+                {
+                    MessageBox.Show("Local do armázem definido com sucesso na rua:\n" + getTripInfo["partida"]);
+                    textBox1.Enabled = false;
+                    buttonDefinirArmazemDados.Text = "Redefinir";
+                }
+                else
+                {
+                    MessageBox.Show("Este CEP é inválido! Verifique novamente.");
+                }
             }
             else
             {
                 textBox1.Enabled = true;
                 buttonDefinirArmazemDados.Text = "Definir";
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // TODO: SETAR TAMANHO DA CAIXA DA MOTO
         }
     }
 }

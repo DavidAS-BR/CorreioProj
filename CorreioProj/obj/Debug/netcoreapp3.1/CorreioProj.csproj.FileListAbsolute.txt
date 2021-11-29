@@ -65,3 +65,5 @@ C:\Users\natha\source\repos\CorreioProj-main1\CorreioProj-main\CorreioProj\obj\D
 C:\Users\natha\source\repos\CorreioProj-main1\CorreioProj-main\CorreioProj\obj\Debug\netcoreapp3.1\CorreioProj.pdb
 C:\Users\natha\source\repos\CorreioProj-main1\CorreioProj-main\CorreioProj\obj\Debug\netcoreapp3.1\CorreioProj.genruntimeconfig.cache
 C:\Users\david\OneDrive\Desktop\CorreioProj\CorreioProj\obj\Debug\netcoreapp3.1\CorreioProj.Properties.Resources.resources
+C:\Users\david\OneDrive\Desktop\CorreioProj\CorreioProj\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\david\OneDrive\Desktop\CorreioProj\CorreioProj\obj\Debug\netcoreapp3.1\CorreioProj.TelaCarregando.resources

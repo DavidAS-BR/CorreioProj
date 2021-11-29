@@ -59,5 +59,15 @@ namespace CorreioProj.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap dae67631234507_564a1d230a290 {
+            get {
+                object obj = ResourceManager.GetObject("dae67631234507.564a1d230a290", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
