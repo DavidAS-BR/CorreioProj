@@ -1,15 +1,19 @@
 # CorreioProj
-Projeto de Modelagem e Simulação
+Projeto de Modelagem e Simulação.
 
-# Modelagem e Simulação
-Simualção de um sistema de entregas do correio
+# Objetivo
+Desenvolver um software de modelagem e simulação que simule entregas de produtos para seus respectivos CEPs. Este projeto de `Modelagem e Simulação` visa encontrar uma melhor `logística` para a decisão de entrega destes produtos. 
 
-# Problema
-Decide aleatóriamente quais entregas fazer primeiro
+# Informações do sotware
+ * O software é desenvolvido em C# e sua UI foi criada utilizando o [Windows Forms](https://docs.microsoft.com/en-us/dotnet/desktop/winforms/overview/?view=netdesktop-6.0)
+ * A `logística de entrega dos produtos` criada para melhorar a simulação consome uma API desenvolvida em `Python` disponível na pasta `ModSimTripTimeAPI` neste mesmo repositório.
 
-# Solução do problema de modelagem e simulação
- - 1. Fazer um sistema de logística que leve em conta o tempo do CEP do armazém até o CEP do destino do protudo
- - 2. ?
+# Informações da API
+> Mais informações sobre a API estão disponíveis na documentação dos arquivos na pasta `ModSimTripTimeAPI`.
+
+> A API criada _(disponível na pasta ModSimTripTimeAPI)_ foi desenvolvida `especificamente` para este projeto. 
+
+A API foi desenvolvida em Python utilizando [Flask](https://flask.palletsprojects.com/en/2.0.x/). A API utiliza uma outra [API dos correios](https://buscacepinter.correios.com.br/app/endereco/index.php) para validação do CEP e faz uso do [Nominatim](https://nominatim.org/) para adquirir as coordenadas do CEP e o [OpenStreetMap](https://www.openstreetmap.org/) para adquirir informações sobre a rotas.
 
 *Protótipo*:
 ![image](https://i.imgur.com/FTHiqlq.gif)
