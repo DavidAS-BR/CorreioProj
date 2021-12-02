@@ -15,6 +15,8 @@ Desenvolver um software de modelagem e simulação que simule entregas de produt
 
 A API foi desenvolvida em Python utilizando [Flask](https://flask.palletsprojects.com/en/2.0.x/). A API utiliza uma outra [API dos correios](https://buscacepinter.correios.com.br/app/endereco/index.php) para validação do CEP e faz uso do [Nominatim](https://nominatim.org/) para adquirir as coordenadas do CEP e o [OpenStreetMap](https://www.openstreetmap.org/) para adquirir informações sobre a rotas.
 
+A API está hospedada no [Glitch](https://glitch.com/) com o link https://sun-superficial-balloon.glitch.me e possui atualmente duas rotas: `/gettripinfo&de=<cepfrom>&para=<cepto>` e `/getcepvalidation&cep=<cep>`. Ex: https://sun-superficial-balloon.glitch.me/gettripinfo&de=01503010&para=03101004
+
 *Protótipo*:
 ![image](https://i.imgur.com/FTHiqlq.gif)
 
