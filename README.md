@@ -2,7 +2,7 @@
 Projeto de Modelagem e Simulação.
 
 # Objetivo
-Desenvolver um software de modelagem e simulação que simule entregas de produtos para seus respectivos CEPs. Este projeto de `Modelagem e Simulação` visa encontrar uma melhor `logística` para a decisão de entrega destes produtos. 
+Desenvolver um software de modelagem e simulação que simule entregas de produtos para seus respectivos CEPs. Este projeto de `Modelagem e Simulação` visa encontrar uma melhor `logística` (que não seja `FIFO`) para a decisão de entrega destes produtos. 
 
 # Informações do sotware
  * O software é desenvolvido em C# e sua UI foi criada utilizando o [Windows Forms](https://docs.microsoft.com/en-us/dotnet/desktop/winforms/overview/?view=netdesktop-6.0)
